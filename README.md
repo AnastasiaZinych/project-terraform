@@ -1,1 +1,42 @@
 # project-terraform
+Prerequisites
+For this guide, you will need:
+
+AWS account
+EC2 instance with terraform installed on it (version Terraform v1.1.1)
+Set up and initialize your Terraform workspace
+In your terminal, clone the following repository. Once you have cloned the repository, initialize your Terraform workspace, which will download and configure the providers. You will have to create variable file, with all variables and name it "virginia.tfvars" or any other region you need
+
+The variable file should content :
+EC2 Instance
+region = " "
+path_to_public_key = " "
+path_to_private_key = " "
+instance_username = "ec2-user" #or any other user which will connect to remote terminal
+sec_group_name = " "
+Networking
+cidr_block = " " #for VPC
+public_subnet1 = " " #cidr block for public subnet1
+public_subnet2 = " " #cidr block for public subnet2
+public_subnet3 = " " #cidr block for public subnet3
+private_subnet1 = " " #cidr block for private subnet1
+private_subnet2 = " " #cidr block for private subnet2
+private_subnet3 = " " #cidr block for private subnet3
+availability_zone = " " #where will main instance be created. It will be connected to DS cluster
+availability_zones = [" ", " ", " "]
+Database
+database_name = " "
+cluster_identifier = " "
+master_username = " "
+master_password = " "
+Tags (#Optional)
+tags = { Dept = " " Team = " " }
+Domain Configuration
+domain = " " #name of your domain for creating record using Route53
+zone_id = " " #zone id for your domain
+Depends on the region you choose before please run the followin commands :
+
+terraform init && terraform apply -var-file regions/name-of-your-folder.tfvars   -auto-approve
+or
+
+see the Makefile for shortcuts examples
